@@ -1,0 +1,20 @@
+@import '~bootstrap/scss/bootstrap';
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
+$body-color: red;
+
+body {
+  color: $body-color;
+}
+
+#click-me {
+  color: green;
+}
+
+.icon {
+  background: url(assets/img/mit.svg);
+}

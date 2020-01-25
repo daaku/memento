@@ -1,0 +1,68 @@
+{
+  "name": "memento",
+  "version": "1.0.0",
+  "description": "TypeScript + SASS + WebPack Example",
+  "repository": "git@github.com:daaku/memento",
+  "scripts": {
+    "check:types": "tsc --noEmit",
+    "check:lint": "eslint_d --fix --ext .ts --ext .js .",
+    "check": "concurrently 'npm:check:*' 'npm:test'",
+    "build": "NODE_ENV=production webpack -p",
+    "package": "npm ci --ignore-scripts && npm run build",
+    "dev": "webpack --watch",
+    "test": "jest"
+  },
+  "prettier": "prettier-config-daaku",
+  "jest": {
+    "preset": "ts-jest",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/__mocks__/static-asset.ts"
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/lib/"
+    ]
+  },
+  "keywords": [],
+  "author": "Naitik Shah <n@daaku.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "@types/app-root-path": "^1.2.4",
+    "@types/copy-webpack-plugin": "^5.0.0",
+    "@types/jest": "^24.9.0",
+    "@types/mini-css-extract-plugin": "^0.9.0",
+    "@types/webpack": "^4.41.2",
+    "@types/webpack-bundle-analyzer": "^2.13.3",
+    "@types/webpack-env": "^1.15.0",
+    "app-root-path": "^3.0.0",
+    "autoprefixer": "^9.7.4",
+    "bootstrap": "^4.4.1",
+    "cache-loader": "^4.1.0",
+    "concurrently": "^5.0.2",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.4.2",
+    "eslint-config-daaku": "^1.0.7",
+    "eslint_d": "^8.0",
+    "file-loader": "^5.0.2",
+    "glob-all": "^3.1.0",
+    "jest": "^25.1.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^1.19.1",
+    "purgecss-webpack-plugin": "^2.0.5",
+    "resolve-url-loader": "^3.1.1",
+    "sass": "^1.24.4",
+    "sass-loader": "^8.0.2",
+    "ts-jest": "^25.0.0",
+    "ts-loader": "^6.1.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.4",
+    "typescript-language-server": "^0.4.0",
+    "webpack": "^4.41.5",
+    "webpack-bundle-analyzer": "^3.6.0",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0"
+  }
+}
