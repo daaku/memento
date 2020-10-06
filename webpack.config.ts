@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import PurgecssPlugin from 'purgecss-webpack-plugin';
 import appRoot from 'app-root-path';
 import fs from 'fs';
-// @ts-ignore
+// @ts-expect-error we dont have types for this
 import glob from 'glob-all';
 import webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
@@ -41,7 +42,7 @@ const config: webpack.Configuration = {
     extensions: ['.ts', '.js', '.scss'],
   },
   performance: {
-    assetFilter: function(assetFilename: string): boolean {
+    assetFilter: function (assetFilename: string): boolean {
       return assetFilename.endsWith('.js') || assetFilename.endsWith('.css');
     },
   },
@@ -80,7 +81,11 @@ const config: webpack.Configuration = {
           { loader: 'css-loader', options: { sourceMap: true } },
           {
             loader: 'postcss-loader',
-            options: { plugins: () => [require('autoprefixer')] },
+            options: {
+              postcssOptions: {
+                plugins: () => [require('autoprefixer')],
+              },
+            },
           },
           { loader: 'resolve-url-loader', options: { sourceMap: true } },
           { loader: 'sass-loader', options: { sourceMap: true } },
@@ -92,7 +97,6 @@ const config: webpack.Configuration = {
     new webpack.DefinePlugin({
       __DEV__: !isProd,
       __REV__: JSON.stringify(rev.rev || 'development'),
-      // eslint-disable-next-line @typescript-eslint/camelcase
       __webpack_public_path__: JSON.stringify(publicPath),
     }),
     enableAnalyzer
@@ -105,7 +109,8 @@ const config: webpack.Configuration = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    new CopyPlugin([{ from: 'index.html' }]),
+    // @ts-expect-error copy plugin types are incorrect
+    new CopyPlugin({ patterns: [{ from: 'index.html' }] }),
     isProd
       ? new PurgecssPlugin({
           paths: () => {
