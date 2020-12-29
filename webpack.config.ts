@@ -128,7 +128,7 @@ const config: webpack.Configuration = {
       append: '\n//# sourceMappingURL=sourcemaps/[file].map',
       filename: 'sourcemaps/[file].map',
     }),
-  ].filter(isNotNull),
+  ].filter(isNotNull) as webpack.Plugin[],
 };
 
 export default config;
